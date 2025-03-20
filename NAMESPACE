@@ -2,3 +2,5 @@
 
 export(buildmlx)
 export(getMLXdir)
+import(Rsmlx)
+importFrom(foreach,"%dopar%")

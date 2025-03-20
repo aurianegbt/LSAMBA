@@ -11,5 +11,5 @@ LazyData: true
 RoxygenNote: 7.3.2
 Imports: doParallel, dplyr, ggplot2, grDevices, latex2exp, lixoftConnectors, MASS, parallel, Rsmlx, sharp, stringr
 Depends: 
-    R (>= 2.10),  Rsmlx (=2023.1.5)
+    R (>= 2.10),  Rsmlx (>= 2023.1.5), Rsmlx (<= 2023.1.5)
 Roxygen: list(markdown = TRUE)
