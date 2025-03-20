@@ -37,7 +37,7 @@ where
 We then add to the dataset noisy genes in order to have finally 200 covariates. These covariates are correlated gaussian covariates. 
 
 
-To build the model, we will use Monolix software [[8]](#8) and the Rsmlx package [[2]](#2) (containing implemented SAMBA algorithm [[3]](#3)) from which we had several other function to enable our lasso approach. 
+To build the model, we will use Monolix software [[4]](#4) and the Rsmlx package [[2]](#2) (containing implemented SAMBA algorithm [[3]](#3)) from which we had several other function to enable our lasso approach. 
 
 ```r
 library(LSAMBA)
@@ -49,3 +49,23 @@ res = buildmlx(project = project,
                 test=FALSE)
 getIndividualParameterModel()
 ```
+
+
+## References
+<a id="1">[1]</a>
+Bodinier B (2024).
+sharp: Stability-enHanced Approaches using Resampling Procedures. R package version 1.4.6,
+<https://CRAN.R-project.org/package=sharp>.
+
+<a id="2">[2]</a>
+Mihaljevic F (2023). 
+Rsmlx: R Speaks 'Monolix'. R package version2023.1.5,
+<https://CRAN.R-project.org/package=Rsmlx>.
+
+<a id="3">[3]</a> 
+Prague M, Lavielle M. 
+SAMBA: A novel method for fast automatic model building in nonlinear mixed-effects models. 
+CPT Pharmacometrics Syst Pharmacol. 2022; 11: 161-172. doi:10.1002/psp4.12742
+
+<a id="4">[4]</a>
+Monolix, Lixoft SAS, a Simulations Plus company, Version 2023R1, https://lixoft.com/products/monolix/
