@@ -114,6 +114,9 @@ a new Monolix project with a new statistical model.
 \description{
 buildmlx uses SAMBA (Stochastic Approximation for Model Building Algorithm), an iterative procedure to accelerate and optimize the process of model building by identifying at each step how best to improve some of the model components. This method allows to find the optimal statistical model which minimizes some information criterion in very few steps.
 }
+\details{
+For covariates model building, covariate selection can be achieved by stepAIC, as the original SAMBA algorithm was implemented in Rsmlx package (Prague and Lavielle, 2020  ; Mihaljevic, 2023) and by a lasso approach enhanced by stability selection (Bodinier et al., 2023).
+}
 \examples{
 \dontrun{
 project <- getMLXdir()
@@ -130,4 +133,6 @@ getIndividualParameterModel()
 Prague M, Lavielle M.  SAMBA: A novel method for fast automatic model building in nonlinear mixed-effects models.  CPT Pharmacometrics Syst Pharmacol. 2022; 11: 161-172. doi:10.1002/psp4.12742
 
 Bodinier B, Filippi S, Haugdahl Nøst T, Chiquet J, Chadeau-Hyam M. Automated calibration for stability selection in penalised regression and graphical models. Journal of the Royal Statistical Society Series C: Applied Statistics. 2023 ; 72: 1375–1393. doi:10.1093/jrsssc/qlad058
+
+Mihaljevic F (2023).  Rsmlx: R Speaks 'Monolix'. R package version2023.1.5, \url{https://CRAN.R-project.org/package=Rsmlx}.
 }
