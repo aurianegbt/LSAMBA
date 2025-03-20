@@ -100,7 +100,7 @@ buildmlx(
 
 \item{nfolds}{for lasso method, number of folds (default=10)}
 
-\item{alpha}{for lasso method, the elasticnet mixing parameter, between 0 and 1. `alpha=1` is the lasso penalty, `alpha=0` is the ridge penalty.}
+\item{alpha}{for lasso method, the elasticnet mixing parameter, between 0 and 1. \code{alpha=1} is the lasso penalty, \code{alpha=0} is the ridge penalty.}
 
 \item{nSS}{for lasso method, number of resampling iterations for stability selection.}
 
@@ -118,10 +118,10 @@ buildmlx uses SAMBA (Stochastic Approximation for Model Building Algorithm), an 
 \dontrun{
 project <- getMLXdir()
 
-res res = buildmlx(project = project,
-                   buildMethod = "lasso",
-                   model='covariate',
-                   test=FALSE)
+res = buildmlx(project = project,
+               buildMethod = "lasso",
+               model='covariate',
+               test=FALSE)
 
 getIndividualParameterModel()
 }
