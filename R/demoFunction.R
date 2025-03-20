@@ -3,8 +3,6 @@
 #' @return path to the monolix demo from LSAMBA package.
 #' @export
 #'
-#' @seealso \code{\link{dynFUN_demo}}.
-#'
 #' @examples
 #' print(getMLXdir())
 getMLXdir <- function(){
