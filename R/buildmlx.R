@@ -926,7 +926,7 @@ buildmlx <- function(project=NULL,
   }
 
   if (model$covariate & nb.model>1)
-    res.covariate$res <- sortCov(res.covariate$res[[1]], cov.ini)
+    res.covariate$res <- Rsmlx:::sortCov(res.covariate$res[[1]], cov.ini)
 
   Rsmlx:::mlx.loadProject(final.project)
 
@@ -1173,7 +1173,7 @@ covariateModelSelection.lasso <- function(nfolds = 5,
   pathToSavePlot = paste0(dirname(lixoftConnectors::getProjectSettings()$directory),"/CalibrationPlot")
   if(!dir.exists(pathToSavePlot)){dir.create(pathToSavePlot)}
 
-
+  p = NULL
   r.var = foreach(p = names(indvar)[which(indvar)],.export = c("applyMethodLasso","modelFromSelection"),.packages = c("ggplot2","gghighlight")) %dopar% {
     aux=applyMethodLasso(Y.mat[,stringr::str_detect(colnames(Y.mat),p),drop=F],
                          X.mat,
@@ -1195,7 +1195,7 @@ covariateModelSelection.lasso <- function(nfolds = 5,
     if(!dir.exists(pathToSavePlot.p)){dir.create(pathToSavePlot.p)}
 
     if(!is.null(aux$plot$plot1)){
-      ggsave(plot=aux$plot$plot1, filename =paste0(pathToSavePlot.p,"/",FDR_thr*100,"pc_high_plot.jpeg"),height=1500,width=3000,units = "px",device=grDevices::jpeg)
+      ggplot2::ggsave(plot=aux$plot$plot1, filename =paste0(pathToSavePlot.p,"/",FDR_thr*100,"pc_high_plot.jpeg"),height=1500,width=3000,units = "px",device=grDevices::jpeg)
     }
 
     return(aux[-which(names(aux)=="plot")])
@@ -1289,6 +1289,7 @@ applyMethodLasso <- function(Y,X,omega,cov0,
                              iter=1,
                              FDR_thr=0.10){
   to.cat = c()
+  lambda=NULL
 
   if(criterion %in% c("BIC","BICc")){
     critFUN <- BIC
@@ -1653,7 +1654,7 @@ lm.all <- function (ny, y, eta, x, tr.names = NULL, pen.coef = NULL, nb.model = 
       pc <- signif(anova(lm0, lmc)$`Pr(>F)`[2], 4)
       pjc <- c(pjc, pc)
     }
-    pjc <- p.weight(pjc, pw[nxc], pen.coef)
+    pjc <- Rsmlx:::p.weight(pjc, pw[nxc], pen.coef)
     names(pjc) <- nxc
     if (!is.null(eta)) {
       etac <- rowMeans(matrix(eta[[1]], nrow = N))
@@ -1664,7 +1665,7 @@ lm.all <- function (ny, y, eta, x, tr.names = NULL, pen.coef = NULL, nb.model = 
         pc <- signif(anova(lm0, lmc)$`Pr(>F)`[2], 4)
         pjec <- c(pjec, pc)
       }
-      pjec <- p.weight(pjec, pw[nxc], pen.coef)
+      pjec <- Rsmlx:::p.weight(pjec, pw[nxc], pen.coef)
       names(pjec) <- nxc
       pjc <- pmin(pjc, pjec, na.rm = T)
     }
@@ -1901,6 +1902,7 @@ modelFromSelection <- function(Y,X,selection=NULL){
     if(length(list.c)>0){
       formula = paste0(formula," + ",paste0(list.c,collapse=" + "))
     }
+    lm.sel <- NULL
     eval(parse(text=paste0("lm.sel <- lm(",formula,",data=data)")))
     lm.list <- append(lm.list,list(lm.sel))
   }
