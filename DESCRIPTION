@@ -2,7 +2,7 @@ Package: LSAMBA
 Type: Package
 Title: lasso-SAMBA algorithm
 Version: 1.0.0
-Author: Auriane Gabaut, Mélanie Prague, Rodolphe Thiébaut
+Author: Auriane Gabaut, Cécile Proust-Lima, Rodolphe Thiébaut, Mélanie Prague
 Maintainer: Auriane Gabaut <auriane.gabaut@inria.fr>
 Description: This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2023.1.5).
 License: GPL (>= 3)

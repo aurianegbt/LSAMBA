@@ -38,6 +38,10 @@
 #' @returns a new Monolix project with a new statistical model.
 #' @export
 #'
+#' @references Prague M, Lavielle M.  SAMBA: A novel method for fast automatic model building in nonlinear mixed-effects models.  CPT Pharmacometrics Syst Pharmacol. 2022; 11: 161-172. doi:10.1002/psp4.12742
+#'
+#' Bodinier B, Filippi S, Haugdahl Nøst T, Chiquet J, Chadeau-Hyam M. Automated calibration for stability selection in penalised regression and graphical models. Journal of the Royal Statistical Society Series C: Applied Statistics. 2023 ; 72: 1375–1393. doi:10.1093/jrsssc/qlad058
+#'
 #' @examples
 #' \dontrun{
 #' project <- getMLXdir()
