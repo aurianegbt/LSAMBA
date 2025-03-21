@@ -5,10 +5,7 @@
 
 ## Installation 
 
-For lasso-SAMBA, version 2023.1.5 of Rsmlx pacakge is needed
-
 ```r
-remotes::install_version("Rsmlx",version="2023.1.5")
 devtools::install_github("aurianegbt/LSAMBA")
 ```
 
@@ -71,9 +68,8 @@ sharp: Stability-enHanced Approaches using Resampling Procedures. R package vers
 <https://CRAN.R-project.org/package=sharp>.
 
 <a id="2">[2]</a>
-Mihaljevic F (2023). 
-Rsmlx: R Speaks 'Monolix'. R package version2023.1.5,
-<https://CRAN.R-project.org/package=Rsmlx>.
+Mihaljevic F, Lavielle M (2024). Rsmlx: R Speaks 'Monolix'. R package version 2024.1.0,
+  <https://CRAN.R-project.org/package=Rsmlx>.
 
 <a id="3">[3]</a> 
 Prague M, Lavielle M. 
@@ -87,4 +83,4 @@ Pasin CBalelli IVan Effelterre T, Bockstal V, Solforosi L, Prague MDouoguih M, T
 Alexandre M, Prague M, McLean C, Bockstal V, Douoguih M, Thiébaut R; EBOVAC 1 and EBOVAC 2 Consortia. Prediction of long-term humoral response induced by the two-dose heterologous Ad26.ZEBOV, MVA-BN-Filo vaccine against Ebola. NPJ Vaccines. 2023 Nov 8;8(1):174. doi: 10.1038/s41541-023-00767-y. PMID: 37940656; PMCID: PMC10632397.
 
 <a id="6">[6]</a>
-Monolix, Lixoft SAS, a Simulations Plus company, Version 2023R1, https://lixoft.com/products/monolix/
+Monolix, Lixoft SAS, a Simulations Plus company, Version 2024R1, https://lixoft.com/products/monolix/

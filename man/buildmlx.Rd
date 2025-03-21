@@ -28,10 +28,10 @@ buildmlx(
   seq.cov = FALSE,
   seq.cov.iter = 0,
   seq.corr = TRUE,
-  p.max = if (buildMethod == "lasso") {
-     1
- } else {
+  p.max = if (buildMethod == "stepAIC") {
      0.1
+ } else {
+     1
  },
   p.min = c(0.075, 0.05, 0.1),
   print = TRUE,
