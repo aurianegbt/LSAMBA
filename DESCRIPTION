@@ -4,12 +4,12 @@ Title: lasso-SAMBA algorithm
 Version: 1.0.0
 Author: Auriane Gabaut
 Maintainer: Auriane Gabaut <auriane.gabaut@inria.fr>
-Description: This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2023.1.5).
+Description: This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Imports: doParallel, dplyr, ggplot2, grDevices, latex2exp, lixoftConnectors, MASS, parallel, sharp, stringr
 Depends: 
-    R (>= 2.10),  Rsmlx (== 2023.1.5), foreach
+    R (>= 2.10),  Rsmlx (>= 2024.1.0), foreach
 Roxygen: list(markdown = TRUE)

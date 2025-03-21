@@ -6,6 +6,6 @@
 \alias{LSAMBA-package}
 \title{LSAMBA: lasso-SAMBA algorithm}
 \description{
-This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2023.1.5).
+This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
 }
 \keyword{internal}
