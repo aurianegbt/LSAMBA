@@ -3,6 +3,19 @@
 **Implementation of lasso in SAMBA relies on _sharp_ package [[1]](#1), containing lasso enhanced by stability selection algorithm, and _Rsmlx_ package [[2]](#2), containing SAMBA algorithm [[3]](#3).**
 **For lasso, categorical covariates need to be numerical and no missing values in the covariates table.**
 
+## Installation 
+
+For lasso-SAMBA, version 2023.1.5 of Rsmlx pacakge is needed
+
+```r
+remotes::install_version("Rsmlx",version="2023.1.5")
+devtools::install_github("aurianegbt/LSAMBA")
+```
+
+## Example
+
+
+
 For the example dataset contain in the demo projet in inst/data folder, we simulate for 100 individuals the antibody production by considering two Antibodies secreting cells (ASC), denoted by S -\textit{for short-live}- and L -\textit{for long-live}- (at rates $\varphi_S$ and $\varphi_L$ resp.) and characterized by their half-life ($\delta_S$ and $\delta_L$ resp.),  [[4]](#4), [[5]](#5). Antibodies are supposed to decay at rate $\delta_{Ab}$. We add significant covariates on $\varphi_S$, $\varphi_L$ and $\delta_{Ab}$ parameters. The mechanistic model is then : 
 ```math 
 \forall i\leq N,j\leq n_i,   \left\{\begin{array}{rcl}
