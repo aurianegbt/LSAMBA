@@ -1,6 +1,6 @@
 Package: LSAMBA
 Type: Package
-Title: lasso-SAMBA algorithm
+Title: Lasso-SAMBA Algorithm
 Version: 2024.0
   Authors@R: c(person(given = "Auriane",
                       family = "Gabaut",
