@@ -14,7 +14,7 @@ Version: 2024.0
                       role = "aut",
                       comment = "for former code of Rsmlx"))
 Maintainer: Auriane Gabaut <auriane.gabaut@inria.fr>
-Description: This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
+Description: This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
