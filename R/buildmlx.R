@@ -554,7 +554,7 @@ buildmlx <- function (project = NULL,
         1) {
       g0 <- Rsmlx:::mlx.getIndividualParameterModel()
       covariate <- random.effect <- p.ttest <- p.lrt <- in.model <- p.value <- NULL
-      r.test <- covariate.test(cov.test, covToTest, covToTransform,
+      r.test <- Rsmlx:::covariate.test(cov.test, covToTest, covToTransform,
                                paramToUse)
       r.test <- r.test %>% filter(!in.model) %>% select(-in.model)
       if (is.weight) {
@@ -666,7 +666,7 @@ buildmlx <- function (project = NULL,
         Rsmlx:::mlx.runLogLikelihoodEstimation(linearization = lin.ll)
         ll.new <- Rsmlx:::compute.criterion(criterion, method.ll,
                                             weight, pen.coef)
-        ll <- formatLL(Rsmlx:::mlx.getEstimatedLogLikelihood()[[method.ll]],
+        ll <- Rsmlx:::formatLL(Rsmlx:::mlx.getEstimatedLogLikelihood()[[method.ll]],
                        criterion, ll.new, is.weight, is.prior)
         to.cat <- paste0("\nEstimated criteria (", method.ll,
                          "):\n")
@@ -701,7 +701,7 @@ buildmlx <- function (project = NULL,
           for (nc in ngp) {
             ipc <- grep(paste0("beta_", np, "_", nc),
                         r.test$parameter)
-            pv[ipc] <- p.weight(pv[ipc], weight$covariate[np,
+            pv[ipc] <- Rsmlx:::p.weight(pv[ipc], weight$covariate[np,
                                                           nc], pen.coef[1])
             if (max(pv[ipc]) > p.min[2]) {
               g$covariateModel[[np]][nc] <- F
@@ -767,7 +767,7 @@ buildmlx <- function (project = NULL,
         p.cortest <- NULL
         if (!Rsmlx:::mlx.getLaunchedTasks()$conditionalDistributionSampling)
           Rsmlx:::mlx.runConditionalDistributionSampling()
-        r.test <- correlationTest()$p.value %>% filter(!in.model) %>%
+        r.test <- Rsmlx:::correlationTest()$p.value %>% filter(!in.model) %>%
           rename(p.value = p.cortest)
         param1 <- gsub("eta_", "", r.test$randomEffect.1)
         param2 <- gsub("eta_", "", r.test$randomEffect.2)
@@ -846,7 +846,7 @@ buildmlx <- function (project = NULL,
             Rsmlx:::print_result(print, summary.file, to.cat = to.cat,
                                  to.print = NULL)
             Rsmlx:::mlx.runLogLikelihoodEstimation(linearization = lin.ll)
-            ll.new <- compute.criterion(criterion, method.ll,
+            ll.new <- Rsmlx:::compute.criterion(criterion, method.ll,
                                         weight, pen.coef)
             ll.disp <- Rsmlx:::formatLL(Rsmlx:::mlx.getEstimatedLogLikelihood()[[method.ll]],
                                         criterion, ll.new, is.weight, is.prior)
