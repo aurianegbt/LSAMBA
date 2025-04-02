@@ -539,7 +539,7 @@ buildmlx <- function (project = NULL,
   }
   if (test) {
     if (!iop.ll) {
-      g <- as.list(Rsmlx:::print_resultgetLaunchedTasks())$logLikelihoodEstimation
+      g <- as.list(Rsmlx:::mlx.getLaunchedTasks())$logLikelihoodEstimation
       if (!linearization & !("importanceSampling" %in%
                              g))
         Rsmlx:::mlx.runLogLikelihoodEstimation(linearization = F)
@@ -600,7 +600,7 @@ buildmlx <- function (project = NULL,
       }
       if (any(Rsmlx:::mlx.getObservationInformation()$type !=
               "continuous"))
-        Rsmlx:::mlxrunStandardErrorEstimation(linearization = F)
+        Rsmlx:::mlx.runStandardErrorEstimation(linearization = F)
       else Rsmlx:::mlx.runStandardErrorEstimation(linearization = T)
       g <- Rsmlx:::mlx.getIndividualParameterModel()
       n.param <- g$name
@@ -684,7 +684,7 @@ buildmlx <- function (project = NULL,
       g <- as.list(Rsmlx:::mlx.getLaunchedTasks())$standardErrorEstimation
       if (!linearization & !("stochasticApproximation" %in%
                              g))
-        Rsmlx:::print_resultrunStandardErrorEstimation(linearization = F)
+        Rsmlx:::mlx.runStandardErrorEstimation(linearization = F)
       if (!("linearization" %in% g))
         Rsmlx:::mlx.runStandardErrorEstimation(linearization = T)
       r.test <- Rsmlx:::mlx.getTests()$wald
@@ -728,7 +728,7 @@ buildmlx <- function (project = NULL,
                              to.print = NULL)
         buildmlx.project.iter <- file.path(buildmlx.dir,
                                            paste0("iteration", iter, ".mlxtran"))
-        Rsmlx:::mlx.aveProject(buildmlx.project.iter)
+        Rsmlx:::mlx.saveProject(buildmlx.project.iter)
         Rsmlx:::mlx.runPopulationParameterEstimation()
         if (lin.ll) {
           if (!launched.tasks[["conditionalModeEstimation"]])

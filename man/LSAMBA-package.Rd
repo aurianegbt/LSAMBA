@@ -4,8 +4,18 @@
 \name{LSAMBA-package}
 \alias{LSAMBA}
 \alias{LSAMBA-package}
-\title{LSAMBA: lasso-SAMBA algorithm}
+\title{LSAMBA: Lasso-SAMBA Algorithm}
 \description{
-This package proposes the implementation of the lassoSAMBA algorith to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
+This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
+}
+\author{
+\strong{Maintainer}: Auriane Gabaut \email{auriane.gabaut@inria.fr}
+
+Authors:
+\itemize{
+  \item Mélanie Prague
+  \item Marc Lavielle (for former code of Rsmlx)
+}
+
 }
 \keyword{internal}
