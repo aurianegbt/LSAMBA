@@ -440,3 +440,11 @@ Rsmlx.correlationModelSelection <- function(e0 = NULL, pen.coef = NULL, nb.model
   .hiddenCall('r <- Rsmlx:::correlationModelSelection(e0,pen.coef,nb.model,corr0,seqmod,prior,cor.list,weight)')
   return(r)
 }
+
+mlx.stepAIC <- function(object, scope, scale = 0, direction = c("both", "backward",
+                                                                "forward"), trace = 1, keep = NULL, steps = 1000, use.start = FALSE,
+                        k = 2, weight = NULL){
+  r <- NULL
+  .hiddenCall('r <- Rsmlx:::mlx.stepAIC(object,scope,scale,direction,trace,keep,steps,use.start,k,weight)')
+  return(r)
+}

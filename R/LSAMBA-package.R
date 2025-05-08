@@ -22,5 +22,6 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr rename
 #' @importFrom dplyr select
+#' @importFrom utils read.csv
 ## usethis namespace: end
 NULL
