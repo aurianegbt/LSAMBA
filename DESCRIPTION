@@ -14,12 +14,13 @@ Authors@R: c(person(given = "Auriane",
                       role = "aut",
                       comment = "for former code of Rsmlx"))
 Maintainer: Auriane Gabaut <auriane.gabaut@inria.fr>
-Description: This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1).
+Description: This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1) <https://monolix.lixoft.com>. 'Monolix' must have been installed prior to use. 
+SystemRequirements: 'Monolix' (<https://monolix.lixoft.com>)
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
-Imports: doParallel, dplyr, ggplot2, grDevices, latex2exp, MASS, parallel, sharp, stringr, lixoftConnectors
+Imports: doParallel, dplyr, ggplot2, grDevices, latex2exp, MASS, parallel, sharp, stringr
 Depends: 
     R (>= 2.10),  Rsmlx (>= 2024.1.0), foreach
 Roxygen: list(markdown = TRUE)

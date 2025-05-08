@@ -1203,7 +1203,8 @@ covariateModelSelection.lasso <- function(nfolds = 5,
   Y.mat = sapply(Y[,-c(1,2),drop=F],function(x){rowMeans(matrix(x,nrow=N))}) #1 : rep 2 : id
   X.mat  = covariates[,setdiff(colnames(covariates),"id")]
 
-  pathToSavePlot = paste0(dirname(lixoftConnectors::getProjectSettings()$directory),"/CalibrationPlot")
+  pathToSavePlot = NULL
+  eval(parse(text='pathToSavePlot = paste0(dirname(lixoftConnectors::getProjectSettings()$directory),"/CalibrationPlot")'))
   if(!dir.exists(pathToSavePlot)){dir.create(pathToSavePlot)}
 
   p = NULL
