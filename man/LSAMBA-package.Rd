@@ -6,7 +6,7 @@
 \alias{LSAMBA-package}
 \title{LSAMBA: Lasso-SAMBA Algorithm}
 \description{
-This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1) \url{https://monolix.lixoft.com}. 'Monolix' must have been installed prior to use.
+This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1) < https://monolixsuite.slp-software.com/monolix/2024R1/>. 'Monolix' must have been installed prior to use.
 }
 \author{
 \strong{Maintainer}: Auriane Gabaut \email{auriane.gabaut@inria.fr}

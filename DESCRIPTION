@@ -14,8 +14,8 @@ Authors@R: c(person(given = "Auriane",
                       role = "aut",
                       comment = "for former code of Rsmlx"))
 Maintainer: Auriane Gabaut <auriane.gabaut@inria.fr>
-Description: This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1) <https://monolix.lixoft.com>. 'Monolix' must have been installed prior to use. 
-SystemRequirements: 'Monolix' (<https://monolix.lixoft.com>)
+Description: This package proposes the implementation of the lasso-SAMBA algorithm to build mechanistic model. This package works jointly with Rsmlx package (version 2024.1.0), based on Monolix software (version 2024R1) < https://monolixsuite.slp-software.com/monolix/2024R1/>. 'Monolix' must have been installed prior to use. 
+SystemRequirements: 'Monolix' (<https://monolixsuite.slp-software.com/monolix/2024R1/>)
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
