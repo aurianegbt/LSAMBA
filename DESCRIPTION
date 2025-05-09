@@ -12,7 +12,7 @@ Authors@R: c(person(given = "Auriane",
                person(given = "Marc",
                       family = "Lavielle",
                       role = "aut",
-                      comment = "for former code of Rsmlx"))
+                      comment = "for former code of Rsmlx and connectors"))
 Maintainer: Auriane Gabaut <auriane.gabaut@inria.fr>
 Description: Provides a lasso-based method for building mechanistic models using the SAMBA algorithm (Prague & Lavielle, 2022). The package extends the Rsmlx package (version 2024.1.0) to better handle high-dimensional data. It relies on the Monolix software (version 2024R1; see https://monolixsuite.slp-software.com/monolix/2024R1/), which must be installed beforehand.
 SystemRequirements: 'Monolix' (<https://monolixsuite.slp-software.com/monolix/2024R1/>)

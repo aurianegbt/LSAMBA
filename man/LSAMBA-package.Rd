@@ -14,7 +14,7 @@ Provides a lasso-based method for building mechanistic models using the SAMBA al
 Authors:
 \itemize{
   \item Mélanie Prague
-  \item Marc Lavielle (for former code of Rsmlx)
+  \item Marc Lavielle (for former code of Rsmlx and connectors)
 }
 
 }
