@@ -6,7 +6,7 @@
 \alias{LSAMBA-package}
 \title{LSAMBA: Lasso-SAMBA Algorithm}
 \description{
-Provides a lasso-based method for building mechanistic models using the SAMBA algorithm (Prague & Lavielle, 2022). The package extends the Rsmlx package (version 2024.1.0) to better handle high-dimensional data. It relies on the Monolix software (version 2024R1; see https://monolixsuite.slp-software.com/monolix/2024R1/), which must be installed beforehand.
+Provides a lasso-based method for building mechanistic models using the SAMBA algorithm (Prague & Lavielle, 2022). The package extends the Rsmlx package (version 2024.1.0) to better handle high-dimensional data. It relies on the Monolix software (version 2024R1; see (\url{https://monolixsuite.slp-software.com/monolix/2024R1/}), which must be installed beforehand.
 }
 \author{
 \strong{Maintainer}: Auriane Gabaut \email{auriane.gabaut@inria.fr}
