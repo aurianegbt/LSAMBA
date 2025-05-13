@@ -13,5 +13,7 @@ path to the monolix demo from 'Monolix' software
 Get monolix demo project path.
 }
 \examples{
+\dontrun{
 print(getMLXdir())
+}
 }

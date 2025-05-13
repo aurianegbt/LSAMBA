@@ -4,7 +4,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' print(getMLXdir())
+#' }
 getMLXdir <- function(){
   mlx.initializeLixoftConnectors()
   r <- mlx.getDemoPath()
