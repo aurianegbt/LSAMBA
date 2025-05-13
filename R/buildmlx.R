@@ -71,8 +71,8 @@ buildmlx <- function (project = NULL,
                       center.covariate = FALSE,
                       criterion = "BICc",
                       linearization = FALSE,
-                      ll = T,
-                      test = F,
+                      ll = TRUE,
+                      test = FALSE,
                       direction = NULL,
                       steps = 1000,
                       n.full = 10,
@@ -124,7 +124,7 @@ buildmlx <- function (project = NULL,
                               explor.iter, seq.cov, seq.cov.iter, seq.corr, p.max,
                               p.min, print, nb.model, prior, weight, n.full)
   if (!is.null(r$change))
-    return(list(change = F))
+    return(list(change = FALSE))
   for (j in 1:length(r)) eval(parse(text = paste0(names(r)[j],
                                                   "= r[[j]]")))
   r <- Rsmlx.def.variable(weight = weight, prior = prior, criterion = criterion)
@@ -149,7 +149,7 @@ buildmlx <- function (project = NULL,
   summary.file = file.path(buildmlx.dir, "summary.txt")
   Sys.sleep(0.1)
   if (!dir.exists(final.dir))
-    dir.create(final.dir, recursive = T)
+    dir.create(final.dir, recursive = TRUE)
   to.cat <- paste0("\n", dashed.line, "\nBuilding:\n")
   if (model$covariate)
     to.cat <- c(to.cat, "  -  The covariate model\n")
@@ -159,7 +159,7 @@ buildmlx <- function (project = NULL,
     to.cat <- c(to.cat, "  -  The residual error model\n")
   to.cat <- c(to.cat, "\n")
   print_result(print, summary.file, to.cat = to.cat, to.print = NULL)
-  print.line <- F
+  print.line <- FALSE
   p.ini <- mlx.getPopulationParameterInformation()
   rownames(p.ini) <- p.ini$name
   ind.omega <- grep("omega_", p.ini[["name"]])
@@ -351,7 +351,7 @@ buildmlx <- function (project = NULL,
         corr.test <- TRUE
       if (!seq.cov & iter > seq.cov.iter)
         corr.test <- TRUE
-      if (corr.test & (seq.cov == T | seq.cov.iter > 0)) {
+      if (corr.test & (seq.cov == TRUE | seq.cov.iter > 0)) {
         to.cat <- "Start building correlation model too ... \n"
         print_result(print, summary.file, to.cat = to.cat,
                              to.print = NULL)
@@ -417,7 +417,7 @@ buildmlx <- function (project = NULL,
     }
     if (!stop.test) {
       p.est <- mlx.getEstimatedPopulationParameters()
-      mlx.setInitialEstimatesToLastEstimates(fixedEffectsOnly = T)
+      mlx.setInitialEstimatesToLastEstimates(fixedEffectsOnly = TRUE)
       p.ini <- mlx.getPopulationParameterInformation()
       rownames(p.ini) <- p.ini$name
       i.omega <- which(grepl("omega_", p.ini$name) & (!identical(p.ini$method,
@@ -542,9 +542,9 @@ buildmlx <- function (project = NULL,
       g <- as.list(mlx.getLaunchedTasks())$logLikelihoodEstimation
       if (!linearization & !("importanceSampling" %in%
                              g))
-        mlx.runLogLikelihoodEstimation(linearization = F)
+        mlx.runLogLikelihoodEstimation(linearization = FALSE)
       if (linearization & !("linearization" %in% g))
-        mlx.runLogLikelihoodEstimation(linearization = T)
+        mlx.runLogLikelihoodEstimation(linearization = TRUE)
       ll.min <- Rsmlx.compute.criterion(criterion, method.ll,
                                           weight, pen.coef)
     }
@@ -578,11 +578,11 @@ buildmlx <- function (project = NULL,
         print_result(print, summary.file, to.cat = to.cat,
                              to.print = to.print)
         g <- mlx.getIndividualParameterModel()
-        stop.test <- F
+        stop.test <- FALSE
         for (i in i.min) {
           param.i <- r.test$parameter[i]
           cov.i <- r.test$covariate[i]
-          g$covariateModel[[param.i]][cov.i] <- T
+          g$covariateModel[[param.i]][cov.i] <- TRUE
         }
         mlx.setIndividualParameterModel(g)
         iter <- iter + 1
@@ -596,12 +596,12 @@ buildmlx <- function (project = NULL,
         mlx.runPopulationParameterEstimation()
       }
       else {
-        stop.test <- F
+        stop.test <- FALSE
       }
       if (any(mlx.getObservationInformation()$type !=
               "continuous"))
-        mlx.runStandardErrorEstimation(linearization = F)
-      else mlx.runStandardErrorEstimation(linearization = T)
+        mlx.runStandardErrorEstimation(linearization = FALSE)
+      else mlx.runStandardErrorEstimation(linearization = TRUE)
       g <- mlx.getIndividualParameterModel()
       n.param <- g$name
       n.cov <- names(g$covariateModel[[1]])
@@ -614,19 +614,19 @@ buildmlx <- function (project = NULL,
         ngp <- names(which(gp))
         if (length(ngp) > 0) {
           for (nc in ngp) {
-            g$covariateModel[[np]][nc] <- F
+            g$covariateModel[[np]][nc] <- FALSE
             ipc <- grep(paste0("beta_", np, "_", nc),
                         r.test$parameter)
             pv[ipc] <- Rsmlx.p.weight(pv[ipc], weight$covariate[np,
                                                                   nc], pen.coef[1])
             if (min(pv[ipc]) < p.min[2])
-              g$covariateModel[[np]][nc] <- T
+              g$covariateModel[[np]][nc] <- TRUE
             else list.ipc <- c(list.ipc, ipc)
           }
         }
       }
       if (identical(g$covariateModel, g0$covariateModel))
-        stop.test <- T
+        stop.test <- TRUE
       if (length(list.ipc) > 0) {
         to.cat <- paste0(plain.short, "Remove parameters/covariates relationships:\n")
         method <- statistics <- parameter <- NULL
@@ -684,9 +684,9 @@ buildmlx <- function (project = NULL,
       g <- as.list(mlx.getLaunchedTasks())$standardErrorEstimation
       if (!linearization & !("stochasticApproximation" %in%
                              g))
-        mlx.runStandardErrorEstimation(linearization = F)
+        mlx.runStandardErrorEstimation(linearization = FALSE)
       if (!("linearization" %in% g))
-        mlx.runStandardErrorEstimation(linearization = T)
+        mlx.runStandardErrorEstimation(linearization = TRUE)
       r.test <- mlx.getTests()$wald
       g <- mlx.getIndividualParameterModel()
       n.param <- g$name
@@ -704,7 +704,7 @@ buildmlx <- function (project = NULL,
             pv[ipc] <- Rsmlx.p.weight(pv[ipc], weight$covariate[np,
                                                           nc], pen.coef[1])
             if (max(pv[ipc]) > p.min[2]) {
-              g$covariateModel[[np]][nc] <- F
+              g$covariateModel[[np]][nc] <- FALSE
               list.ipc <- c(list.ipc, ipc)
             }
           }
@@ -760,7 +760,7 @@ buildmlx <- function (project = NULL,
       }
     }
     if (model$correlation) {
-      test.cor <- T
+      test.cor <- TRUE
       cor.block0 <- mlx.getIndividualParameterModel()$correlationBlocks$id
       while (test.cor) {
         mlx.loadProject(final.project)
@@ -783,28 +783,28 @@ buildmlx <- function (project = NULL,
           i.min <- i.min[which.min(r.test$p.value[i.min])]
           param1 <- gsub("eta_", "", r.test$randomEffect.1[i.min])
           param2 <- gsub("eta_", "", r.test$randomEffect.2[i.min])
-          test.cor <- F
+          test.cor <- FALSE
           if (!(param1 %in% param.list) & !(param2 %in%
                                             param.list)) {
             l.block <- length(g$correlationBlocks$id) +
               1
             g$correlationBlocks$id[[l.block]] <- c(param1,
                                                    param2)
-            test.cor <- T
+            test.cor <- TRUE
           }
           if (!(param1 %in% param.list) & (param2 %in%
                                            param.list)) {
             l.block <- grep(param2, g$correlationBlocks$id)
             g$correlationBlocks$id[[l.block]] <- c(g$correlationBlocks$id[[l.block]],
                                                    param1)
-            test.cor <- T
+            test.cor <- TRUE
           }
           if ((param1 %in% param.list) & !(param2 %in%
                                            param.list)) {
             l.block <- grep(param1, g$correlationBlocks$id)
             g$correlationBlocks$id[[l.block]] <- c(g$correlationBlocks$id[[l.block]],
                                                    param2)
-            test.cor <- T
+            test.cor <- TRUE
           }
           if (test.cor) {
             to.cat <- paste0(plain.short, "Add correlation:\n")
@@ -860,27 +860,27 @@ buildmlx <- function (project = NULL,
               mlx.saveProject(final.project)
             }
             else {
-              test.cor <- F
+              test.cor <- FALSE
             }
           }
           else {
-            test.cor <- F
+            test.cor <- FALSE
           }
         }
         else {
-          test.cor <- F
+          test.cor <- FALSE
         }
       }
       mlx.loadProject(final.project)
       p <- mlx.getEstimatedPopulationParameters()
       if (any(mlx.getObservationInformation()$type !=
               "continuous")) {
-        mlx.runStandardErrorEstimation(linearization = F)
+        mlx.runStandardErrorEstimation(linearization = FALSE)
         se <- mlx.getEstimatedStandardErrors()$stochasticApproximation$se
         names(se) <- mlx.getEstimatedStandardErrors()$stochasticApproximation$parameter
       }
       else {
-        mlx.runStandardErrorEstimation(linearization = T)
+        mlx.runStandardErrorEstimation(linearization = TRUE)
         se <- mlx.getEstimatedStandardErrors()$linearization$se
         names(se) <- mlx.getEstimatedStandardErrors()$linearization$parameter
       }
@@ -1089,7 +1089,8 @@ covariateModelSelection <- function(buildMethod,
                                     correlation.model=NULL,
                                     covariate.model=NULL,
                                     criterion = "BIC",
-                                    FDR_thr=0.10){
+                                    FDR_thr=0.10,
+                                    print=TRUE){
   if(buildMethod %in% c("stepAIC")){
     Rsmlx.covariateModelSelection(pen.coef = pen.coef,
                                     nb.model = nb.model, weight = weight,
@@ -1097,9 +1098,9 @@ covariateModelSelection <- function(buildMethod,
                                     direction = direction, steps = steps, p.max = p.max,
                                     paramToUse = paramToUse, sp0 = sp0, iter = iter,
                                     correlation.model = correlation.model, n.full = n.full,
-                                    eta = eta)
+                                    eta = eta,print=print)
   }else if(buildMethod=="lasso"){
-    covariateModelSelection.lasso(nfolds,alpha,covFix,pen.coef,weight,paramToUse,eta,p.max,sp0,nSS,covariate.model,criterion,iter,FDR_thr)
+    covariateModelSelection.lasso(nfolds,alpha,covFix,pen.coef,weight,paramToUse,eta,p.max,sp0,nSS,covariate.model,criterion,iter,FDR_thr,print=print)
   }
 }
 
@@ -1121,7 +1122,8 @@ covariateModelSelection.lasso <- function(nfolds = 5,
                                           covariate.model=NULL,
                                           criterion="BIC",
                                           iter=1,
-                                          FDR_thr=0.10){
+                                          FDR_thr=0.10,
+                                          print=TRUE){
   # Simulate Individual Parameters and setup parameters
   sp.df <- mlx.getSimulatedIndividualParameters()
   if (is.null(sp.df$rep))
@@ -1200,16 +1202,12 @@ covariateModelSelection.lasso <- function(nfolds = 5,
 
   N = length(unique(Y$id))
 
-  Y.mat = sapply(Y[,-c(1,2),drop=F],function(x){rowMeans(matrix(x,nrow=N))}) #1 : rep 2 : id
+  Y.mat = sapply(Y[,-c(1,2),drop=FALSE],function(x){rowMeans(matrix(x,nrow=N))}) #1 : rep 2 : id
   X.mat  = covariates[,setdiff(colnames(covariates),"id")]
-
-  pathToSavePlot = NULL
-  eval(parse(text='pathToSavePlot = paste0(dirname(lixoftConnectors::getProjectSettings()$directory),"/CalibrationPlot")'))
-  if(!dir.exists(pathToSavePlot)){dir.create(pathToSavePlot)}
 
   p = NULL
   r.var = foreach(p = names(indvar)[which(indvar)],.export = c("applyMethodLasso","modelFromSelection"),.packages = c("ggplot2","gghighlight")) %dopar% {
-    aux=applyMethodLasso(Y.mat[,stringr::str_detect(colnames(Y.mat),p),drop=F],
+    aux=applyMethodLasso(Y.mat[,stringr::str_detect(colnames(Y.mat),p),drop=FALSE],
                          X.mat,
                          Sigma[p,p],
                          cov0=cov0.list[[p]],
@@ -1223,20 +1221,11 @@ covariateModelSelection.lasso <- function(nfolds = 5,
                          iter=iter,
                          FDR_thr=FDR_thr)
 
-    pathToSavePlot.p <- paste0(pathToSavePlot,"/calibrationPlot_",p)
-    if(!dir.exists(pathToSavePlot.p)){dir.create(pathToSavePlot.p)}
-    pathToSavePlot.p <- paste0(pathToSavePlot.p,"/iter_",iter)
-    if(!dir.exists(pathToSavePlot.p)){dir.create(pathToSavePlot.p)}
-
-    if(!is.null(aux$plot$plot1)){
-      ggplot2::ggsave(plot=aux$plot$plot1, filename =paste0(pathToSavePlot.p,"/",FDR_thr*100,"pc_high_plot.jpeg"),height=1500,width=3000,units = "px",device=grDevices::jpeg)
-    }
-
-    return(aux[-which(names(aux)=="plot")])
+    return(aux)
   }
 
   to.cat = unlist(sapply(r.var,FUN=function(r){r$to.cat}))
-  cat(to.cat)
+  if(print){cat(to.cat)}
 
   r.var <- lapply(r.var,FUN=function(r){r[-which(names(r)=="to.cat")]})
 
@@ -1398,7 +1387,7 @@ applyMethodLasso <- function(Y,X,omega,cov0,
 
 
     Score = VariableSelection.outputs$S_2d
-    argmax_id = which(!is.na(Score),arr.ind=T)
+    argmax_id = which(!is.na(Score),arr.ind=TRUE)
     if(nrow(argmax_id)!=0){
       resSharp = lapply(split(argmax_id,1:nrow(argmax_id)),FUN=function(arg_id){
         selection = sharp::SelectedVariables(VariableSelection.outputs,argmax_id = arg_id)
@@ -1425,29 +1414,11 @@ applyMethodLasso <- function(Y,X,omega,cov0,
         df <- rbind(df,data.frame(lambda = signif(lambda_list,digits=2),pi = pi_list[i],Score=Score[,i]))
       }
 
-      plot1 =
-        ggplot2::ggplot(df,ggplot2::aes(x=as.factor(lambda),y=pi,fill=Score)) +
-        ggplot2::geom_tile() +
-        ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.5, hjust=1)) +
-        ggplot2::scale_fill_gradientn(colors = c("ivory", "navajowhite", "tomato","darkred","black"),na.value="white") +
-        ggplot2::xlab(latex2exp::TeX("$\\lambda$"))+
-        ggplot2::ylab(latex2exp::TeX("$t_{SS}$")) +
-        ggplot2::theme(axis.title=ggplot2::element_text(size=14,face="bold")) +
-        ggplot2::theme(axis.text.x=ggplot2::element_text(size=8)) +
-        ggplot2::scale_y_continuous(breaks=c(seq(0,0.5,0.05),seq(0.6,1,0.1)))  +
-        ggplot2::ggtitle(latex2exp::TeX(r"(Heatmap of the constrained stability score S$(t_{SS},\lambda)$ )")) +
-        ggplot2::theme(plot.subtitle = ggplot2::element_text(size=10)) +
-        ggplot2::theme(legend.position = "bottom") +
-        ggplot2::theme(legend.text = ggplot2::element_text(face="plain"))  +
-        ggplot2::theme(legend.title = ggplot2::element_text(size=10))
-
       to.cat.here =  paste0("\n              > parameter values : ",
                             paste0(c("lambda","thresholds"),"=",c(signif(lambda_list[argmax_id[indMax,1]],3),signif(pi_list[argmax_id[indMax,2]],2)),collapse=", "))
     }else{
       selection = savedSelection
       newcriterion = oldCriterion
-
-      plot1=NULL
     }
   }
 
@@ -1463,7 +1434,7 @@ applyMethodLasso <- function(Y,X,omega,cov0,
 
 
   to.cat <- c(to.cat,"\n")
-  return(list(model=model.list,res=selection,cov0=cov0,p.name=p.name,to.cat = to.cat,plot=list(plot1=plot1)))
+  return(list(model=model.list,res=selection,cov0=cov0,p.name=p.name,to.cat = to.cat))
 }
 
 
@@ -1687,7 +1658,7 @@ lm.all <-
         }
         pjec <- Rsmlx.p.weight(pjec, pw[nxc], pen.coef)
         names(pjec) <- nxc
-        pjc <- pmin(pjc, pjec, na.rm = T)
+        pjc <- pmin(pjc, pjec, na.rm = TRUE)
       }
       pjc[names(which(mlx.getIndividualParameterModel()$covariateModel[[ny]]))] <- 0
       list.c <- which(pjc > p.max)
@@ -1810,7 +1781,7 @@ lm.all <-
     d <- ncol(G)
     ll <- df <- bic <- bic.cor <- NULL
     corb <- log(iter^2/(iter^2 + 3))
-    iop.mean <- F
+    iop.mean <- FALSE
     if (iop.mean) {
       yg <- colMeans(matrix(y[[1]], nrow = nrep))
       xg <- x
@@ -1985,7 +1956,7 @@ upd <- function(ny,y,eta,x,p.max,covFix,pen.coef,pw,cov0){
       }
       pjec <- Rsmlx.p.weight(pjec, pw[nxc], pen.coef)
       names(pjec) <- nxc
-      pjc <- pmin(pjc, pjec, na.rm = T)
+      pjc <- pmin(pjc, pjec, na.rm = TRUE)
 
     }
     pjc[names(which(mlx.getIndividualParameterModel()$covariateModel[[ny]]))] <- 0
