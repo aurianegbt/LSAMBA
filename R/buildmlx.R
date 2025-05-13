@@ -321,7 +321,7 @@ buildmlx <- function (project = NULL,
                                                correlation.model = correlation.model, n.full = n.full,
                                                eta = e,
                                                covariate.model = covariate.model, criterion = criterion,
-                                               FDR_thr = FDR_thr)
+                                               FDR_thr = FDR_thr,print=print)
       res.covariate$res <- Rsmlx.sortCov(res.covariate$res,
                                            cov.ini)
       if (iter > explor.iter)
@@ -1098,7 +1098,7 @@ covariateModelSelection <- function(buildMethod,
                                     direction = direction, steps = steps, p.max = p.max,
                                     paramToUse = paramToUse, sp0 = sp0, iter = iter,
                                     correlation.model = correlation.model, n.full = n.full,
-                                    eta = eta,print=print)
+                                    eta = eta)
   }else if(buildMethod=="lasso"){
     covariateModelSelection.lasso(nfolds,alpha,covFix,pen.coef,weight,paramToUse,eta,p.max,sp0,nSS,covariate.model,criterion,iter,FDR_thr,print=print)
   }
