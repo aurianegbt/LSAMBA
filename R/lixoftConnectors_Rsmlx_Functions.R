@@ -133,6 +133,11 @@ mlx.getData <- function() {
   .hiddenCall(paste0('r <- lixoftConnectors::getData()'))
   return(r)
 }
+mlx.getDemoPath <- function() {
+  r <- NULL
+  .hiddenCall(paste0('r <- lixoftConnectors::getDemoPath()'))
+  return(r)
+}
 mlx.getEstimatedIndividualParameters <- function() {
   r <- NULL
   .hiddenCall(paste0('r <- lixoftConnectors::getEstimatedIndividualParameters()'))
