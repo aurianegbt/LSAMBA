@@ -103,6 +103,7 @@ buildmlx <- function (project = NULL,
   plain.short <- "_______________________\n"
   op.original <- options()
   op.new <- options()
+  on.exit(optionts(op.original))
   op.new$lixoft_notificationOptions$warnings <- 1
   options(op.new)
   RsmlxDemo1.project <- RsmlxDemo2.project <- warfarin.data <- resMonolix <- NULL
